@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: nodesy-container
-          image: abrehamacr.azurecr.io/nodejswebapp:v1.0.0
+          image: abrehamacr.azurecr.io/nodejswebapp:v1
           ports:
             - containerPort: 3000
 ---
