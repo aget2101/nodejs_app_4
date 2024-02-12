@@ -17,17 +17,17 @@ pipeline {
            git branch: 'main', url: 'https://github.com/aget2101/nodejs_app_4.git'
             }
         }
-        // run sonarqube test
-        stage('Run Sonarqube') {
-            environment {
-                scannerHome = tool 'ibt-sonarqube';
-            }
-            steps {
-              withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
-                sh "${scannerHome}/bin/sonar-scanner"
-              }
-            }
-        }
+        // // run sonarqube test
+        // stage('Run Sonarqube') {
+        //     environment {
+        //         scannerHome = tool 'ibt-sonarqube';
+        //     }
+        //     steps {
+        //       withSonarQubeEnv(credentialsId: 'ibt-sonar', installationName: 'IBT sonarqube') {
+        //         sh "${scannerHome}/bin/sonar-scanner"
+        //       }
+        //     }
+        // }
        // Building Docker Image 
        stage ('Build Docker image') {
         steps {
