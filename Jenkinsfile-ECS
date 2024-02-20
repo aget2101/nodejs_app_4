@@ -1,0 +1,40 @@
+pipeline {
+    agent any
+
+    parameters {
+    choice choices: ['apply', 'destroy'], description: 'Please enter your option or action', name: 'action'
+     }
+
+    environment {
+        AWS_ACCESS_KEY_ID = credentials('AWS_ACCESS_KEY_ID')
+        AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
+        AWS_DEFAULT_REGION = "us-west-2"
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+           git branch: 'main', url: 'https://github.com/aget2101/nodejs_app_4.git'
+  
+            }
+        }
+    
+        stage ("terraform init") {
+            steps {
+                sh "terraform init" 
+            }
+        }
+  
+        stage ("plan") {
+            steps {
+                sh "terraform plan" 
+            }
+        }
+        stage (" Action") {
+            steps {
+                sh 'terraform ${action}  --auto-approve' 
+           }
+        }
+    }
+}
+   
+    
